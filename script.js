@@ -59,9 +59,8 @@ function init() {
         particleArray.push(new Particle(x, y))
     }
     particleArray.push(new Particle(50, 90))
+    animate()
 }
-
-init()
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -72,4 +71,4 @@ function animate() {
     requestAnimationFrame(animate)
 }
 
-animate()
+init()
