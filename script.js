@@ -53,12 +53,11 @@ class Particle {
 
 function init() {
     particleArray = []
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 100; i++) {
         let x = Math.random() * canvas.width
         let y = Math.random() * canvas.height
         particleArray.push(new Particle(x, y))
     }
-    particleArray.push(new Particle(50, 90))
     animate()
 }
 
