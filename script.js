@@ -20,7 +20,7 @@ window.addEventListener('mousemove', function ({ x, y }) {
 
 ctx.fillStyle = 'white'
 ctx.font = '16px Verdana'
-ctx.fillText('KATARINA', 0, 30)
+ctx.fillText('A', 0, 30)
 const textCoordinates = ctx.getImageData(0, 0, 100, 100)
 
 class Particle {
@@ -44,7 +44,7 @@ class Particle {
     update() {
         let dx = mouse.x - this.x
         let dy = mouse.y - this.y
-        let distance = Math.hypot(dx, dy)
+        let distance = Math.sqrt(dx * dx + dy * dy)
 
         let forceDirectionX = dx / distance
         let forceDirectionY = dy / distance
@@ -98,6 +98,12 @@ function animate() {
         particleArray[i].update()
     }
     requestAnimationFrame(animate)
+}
+
+function connect() {
+    for (let a = 0; a < particleArray.length; a++) {
+        for (let b = a; b < particleArray.length; b++) {}
+    }
 }
 
 init()
