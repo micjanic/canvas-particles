@@ -3,6 +3,8 @@ const ctx = canvas.getContext('2d')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 let particleArray = []
+let adjustX = 5
+let adjustY = 5
 
 //handle mouse
 const mouse = {
@@ -17,8 +19,8 @@ window.addEventListener('mousemove', function ({ x, y }) {
 })
 
 ctx.fillStyle = 'white'
-ctx.font = '30px Verdana'
-ctx.fillText('A', 0, 30)
+ctx.font = '16px Verdana'
+ctx.fillText('KATARINA', 0, 30)
 const textCoordinates = ctx.getImageData(0, 0, 100, 100)
 
 class Particle {
@@ -34,6 +36,7 @@ class Particle {
     draw() {
         ctx.fillStyle = 'red'
         ctx.beginPath()
+        //const textCoordinates = ctx.getImageData(0, 0, 100, 100)
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.closePath()
         ctx.fill()
@@ -79,9 +82,9 @@ function init() {
                     y * 4 * textCoordinates.width + x * 4 + 3
                 ] > 128
             ) {
-                let positionX = x
-                let positionY = y
-                particleArray.push(new Particle(positionX * 10, positionY * 10))
+                let positionX = x + adjustX
+                let positionY = y + adjustY
+                particleArray.push(new Particle(positionX * 20, positionY * 20))
             }
         }
     }
