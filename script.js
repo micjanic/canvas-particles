@@ -43,8 +43,18 @@ class Particle {
         let dy = mouse.y - this.y
         let distance = Math.hypot(dx, dy)
 
-        if (distance < 100) {
-            this.size = 50
+        let forceDirectionX = dx / distance
+        let forceDirectionY = dy / distance
+        let maxDistance = mouse.radius
+
+        let force = (maxDistance - distance) / maxDistance
+
+        let directionX = forceDirectionX * force * this.density
+        let directionY = forceDirectionY * force * this.density
+
+        if (distance < mouse.radius) {
+            this.x -= directionX
+            this.y -= directionY
         } else {
             this.size = 3
         }
@@ -53,7 +63,7 @@ class Particle {
 
 function init() {
     particleArray = []
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 500; i++) {
         let x = Math.random() * canvas.width
         let y = Math.random() * canvas.height
         particleArray.push(new Particle(x, y))
