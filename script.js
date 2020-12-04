@@ -8,7 +8,7 @@ let particleArray = []
 const mouse = {
     x: null,
     y: null,
-    radius: 150,
+    radius: 250,
 }
 
 window.addEventListener('mousemove', function ({ x, y }) {
@@ -29,11 +29,12 @@ class Particle {
         this.baseX = this.x
         this.baseY = this.y
         //prettier-ignore
-        this.density = (Math.random() * 30) + 1
+        this.density = (Math.random() * 100) + 50
     }
     draw() {
         ctx.fillStyle = 'red'
         ctx.beginPath()
+        debugger
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.closePath()
         ctx.fill()
@@ -55,8 +56,16 @@ class Particle {
         if (distance < mouse.radius) {
             this.x -= directionX
             this.y -= directionY
+            //this.size += 0.5
         } else {
-            this.size = 3
+            if (this.x !== this.baseX) {
+                let dx = this.x - this.baseX
+                this.x -= dx / 10
+            }
+            if (this.y !== this.baseY) {
+                let dy = this.y - this.baseY
+                this.y -= dy / 10
+            }
         }
     }
 }
