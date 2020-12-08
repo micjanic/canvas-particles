@@ -30,30 +30,29 @@ class Particle {
         this.size = 3
         this.baseX = this.x
         this.baseY = this.y
+
         //prettier-ignore
         this.density = (Math.random() * 3) + 5
     }
     draw() {
         ctx.fillStyle = 'red'
         ctx.beginPath()
-        //const textCoordinates = ctx.getImageData(0, 0, 100, 100)
+
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.closePath()
         ctx.fill()
     }
     update() {
-        let dx = mouse.x - this.x // 10  // 2
-        let dy = mouse.y - this.y // 10  // 2
-        let distance = Math.sqrt(dx * dx + dy * dy) // 33 // 3.46
+        let dx = mouse.x - this.x
+        let dy = mouse.y - this.y
+        let distance = Math.sqrt(dx * dx + dy * dy)
 
-        let forceDirectionX = dx / distance // 10/33 = .3      // 2 / 3.46 = .57
-        let forceDirectionY = dy / distance // .3    // .57
+        let forceDirectionX = dx / distance
+        let forceDirectionY = dy / distance
 
-        //let maxDistance = mouse.radius
-        //250 -
-        let force = (mouse.radius - distance) / mouse.radius // (250 - 33) / 250 = .868
+        let force = (mouse.radius - distance) / mouse.radius
 
-        let directionX = forceDirectionX * force * this.density // .3 * .868 * 5.47607 = 1.4
+        let directionX = forceDirectionX * force * this.density
         let directionY = forceDirectionY * force * this.density
 
         if (distance < mouse.radius) {
